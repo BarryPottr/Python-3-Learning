@@ -29,3 +29,25 @@ studentSet = {"Garrett", "Griffin", "Quinn"} # This is a Set
 print("\n")
 for name in studentSet:
     print(name)
+
+a = [1, 2, 3]
+b = [4, 5, 6]
+c = [7, 8, 9]
+
+### Extending Lists ########################################################################################
+
+a.extend(b) # You can extend a list with the extend() function. It can only take 1 argument
+a.extend(c)
+print(a)
+
+# NOTE:
+# extend() VS append()
+# Append takes an item and inserts it as an item to the list. Extend takes a LIST, and inserts each item in the given list as items.
+#
+# a=[1,2,3]
+# a.extend([4])
+# will result in [1,2,3,4]
+# a.append([4])
+# will result in [1,2,3,[4]]
+#
+# The last item being a list containing 4, and not just 4. 
