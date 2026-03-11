@@ -70,6 +70,8 @@ print(defaults)
 print(cooper_facts)
 print(defaults | cooper_facts) # We can print over the defaults by putting it as the first dictionary in the merge call
 
+
+
 ### CHALLENGE ########################################################################################
 
 # GOAL: Use dictionaries to count how many times certain characters appear in a string
@@ -102,6 +104,34 @@ def character_count(string):
 
 appearances = character_count(user_string)
 print("\nThese characters appear this many times in your string:")
-#for keys in appearances:
-    #print(f"{keys}: {appearances[keys]}")
-print(appearances)
+for keys in appearances:
+    print(f"{keys}: {appearances[keys]}")
+
+
+
+### CHALLENGE 2 ########################################################################################
+
+# GOAL: Remake the program from challenge 1, but use dictionary merging and defaults
+
+user_string = input("Enter the string we will count character's for: ") # Get the user's string
+
+# Count how many times each character appears in a string, and store the count in a dictionary. Skip space characters.
+def character_count(string):
+
+    appearance_count = {} # Define our dictionary
+
+    # Iterate through each character in a string
+    for char in string:
+        if char == ' ':
+            continue
+        else:
+            appearance_count.setdefault(char, 0) # Set a default value to add the character to the dictionary
+            update = {char: appearance_count.get(char, 0) + 1} # .get() gets the value of the key. In this case, we get the value of char's key, and then increment it by 1
+            appearance_count = appearance_count|update # Update appearance count (which currently has defaults) with the values in update
+
+    return appearance_count
+
+appearances = character_count(user_string)
+print("\nThese characters appear this many times in your string:")
+for keys in appearances:
+    print(f"{keys}: {appearances[keys]}")
