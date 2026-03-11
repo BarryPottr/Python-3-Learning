@@ -94,7 +94,7 @@ def character_count(string):
             appearance_count[char] += 1
         elif char == ' ': # If the character is a space, don't add it to the dictionary
                 continue
-        else: # If it's the character's first time appearing in the string, set it's value as 0 to be iterated upon later
+        else: # If it's the character's first time appearing in the string, set it's value as 1 to be iterated upon later
             counter = 1
             appearance_count[char] = counter
     
