@@ -159,3 +159,7 @@ def uppercase_values(data):
     return {key: {inner_key: inner_value.upper() if isinstance(inner_value, str) else inner_value for inner_key, inner_value in inner_dict.items()} for key, inner_dict in data.items()}
 
 print(f"The answer to Question 7 is {uppercase_values({"person1": {"name": "alice", "age": 30},"person2": {"name": "bob", "city": "paris"}})}.")
+
+# NOTE: In real Python codebases, you'll often see senior developers choose loops over 
+# comprehensions for exactly this reason. The Zen of Python even has a principle for it:
+#   "Readability counts."
