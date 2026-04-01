@@ -88,6 +88,19 @@ def selection_sort(list_original):
 
 print(selection_sort([4, 56, -8, 45, 28, 8, 8, -100]))
 
+people = [
+    {'name': 'Cooper'},
+    {'name': 'Rebecca'},
+    {'name': 'Chase'},
+    {'name': 'Kendra'},
+    {'name': 'Chully'},
+    {'name': 'Mallory'},
+]
+
+def is_greater_than(x, y):
+    # return x > y
+    return x['name'] > y['name']
+
 
 ######
 # PART 2: BUBBLE SORT
@@ -97,14 +110,14 @@ print(selection_sort([4, 56, -8, 45, 28, 8, 8, -100]))
 def bubble_sort(num):
     for _ in num:
         for i in range(len(num) - 1): # We use -1 so num[i + 1] doesn't cause an exception when we reach the max index
-            if num[i] > num[i + 1]: # Change > to < if you want descending order
+            if is_greater_than(num[i], num[i + 1]): # Change > to < if you want descending order
                 a = num[i + 1]
                 num[i + 1] = num[i]
                 num[i] = a
     
     return num
 
-print(bubble_sort([1, 5, -7, 8, 8, -100]))
+print(bubble_sort(people))
 
 
 ######
@@ -120,7 +133,7 @@ def insertion_sort(num_original):
         was_inserted = False
 
         for i in range(len(sorted_numbers)):
-            if sorted_numbers[i] > x:
+            if is_greater_than(sorted_numbers[i], x):
                 sorted_numbers.insert(i, x)
                 was_inserted = True
                 break
@@ -130,4 +143,6 @@ def insertion_sort(num_original):
 
     return sorted_numbers
 
-print(insertion_sort([1, 5, -7, 8, 8, -100]))
+print(insertion_sort(people))
+
+# TIP: You could pass the function is_greater_than as an argument when calling bubble sort and insertion sort
