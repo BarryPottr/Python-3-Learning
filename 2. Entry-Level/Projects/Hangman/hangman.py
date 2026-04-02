@@ -1,4 +1,4 @@
-import json, random, os, subprocess
+import json, random, os, subprocess, sys
 
 #############################################################
 # ANSI COLOR ESCAPE CODE FUNCTIONS
@@ -50,17 +50,17 @@ def clear_screen():
 
 
 def get_word():
-    # parse json list into python list
-    words = []
-    base_dir = os.path.dirname(os.path.abspath(__file__))
+    # Locate base directory whether running as script or PyInstaller bundle
+    if hasattr(sys, '_MEIPASS'):
+        base_dir = sys._MEIPASS          # bundled .exe temp folder
+    else:
+        base_dir = os.path.dirname(os.path.abspath(__file__))  # normal script run
+
     json_path = os.path.join(base_dir, 'words.json')
     with open(json_path, 'r') as f:
         words = json.load(f)
 
-    words_index = random.randint(0, len(words) - 1) # generate random index
-    answer = words[words_index] # get word associated with random index
-    
-    return answer
+    return words[random.randint(0, len(words) - 1)]
 
 
 def guess_and_check(ans, correct_let, guesses, wrong_let):
